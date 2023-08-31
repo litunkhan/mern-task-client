@@ -113,10 +113,16 @@ const HomeAllPost = () => {
                 }`}
                 onClick={toggleLike}
               >
-               <i className="fa-regular fa-thumbs-up"></i>
+               <i onClick={async()=>{
+                await axios.patch(`${import.meta.env.VITE_URL}/api/posts/${singledata._id}/like/${user?._id}`)
+                window.location.reload()
+               }} className="fa-regular fa-thumbs-up"></i>
               </button>
               <i className="fa-solid fa-triangle-exclamation"></i>
              </div>
+             {singledata.like&&(
+              <p className="mx-3">{singledata.like.length}</p>
+             )}
             </div>
           );
         })}
